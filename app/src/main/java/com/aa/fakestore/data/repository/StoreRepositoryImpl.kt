@@ -13,18 +13,20 @@ class StoreRepositoryImpl(
 private val storeServiceImpl: StoreService
 ): StoreRepository{
 
-    private fun <T> wrapWithState(function: () -> Single<Response<T>>): Observable<State<T?>> {
+    private fun <T> wrapWithState(function: () -> Single<Response<T>>): Observable<State<T>> {
         return function()
-            .map { responseWrapper: Response<T> ->
-                if (responseWrapper.isSuccessful) {
-                    State.Success(responseWrapper.body())
+            .map<State<T>> { response ->
+                if (response.isSuccessful) {
+                    State.Success(response.body()!!)
                 } else {
-                    State.Failed(responseWrapper.message())
+                    State.Failed(response.message())
                 }
-            }.startWith(Observable.just(State.Loading))
+            }
+            .onErrorReturn { State.Failed(it.message ?: "Unknown error") }
+            .startWith(Observable.just(State.Loading))
     }
 
-    override fun getAllProducts(): Observable<State<List<AllProductsItem>?>> {
+    override fun getAllProducts(limit : Int? ): Observable<State<List<AllProductsItem>?>> {
        return wrapWithState { storeServiceImpl.getAllProducts() }
     }
 
@@ -36,7 +38,7 @@ private val storeServiceImpl: StoreService
         return wrapWithState{ storeServiceImpl.getAllCategories() }
     }
 
-    override fun getItemsInCategory(categoryName: String): Observable<State<AllProductsItem?>> {
+    override fun getItemsInCategory(categoryName: String): Observable<State<List<AllProductsItem>>> {
         return  wrapWithState { storeServiceImpl.getItemsInCategory(categoryName)}
     }
 }

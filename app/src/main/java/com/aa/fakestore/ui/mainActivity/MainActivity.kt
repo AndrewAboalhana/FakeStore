@@ -1,4 +1,4 @@
-package com.aa.fakestore.ui
+package com.aa.fakestore.ui.mainActivity
 
 
 

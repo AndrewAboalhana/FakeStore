@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="item"
-            type="com.aa.fakestore.data.model.AllProducts" />
-        <variable
-            name="listener"
-            type="com.aa.fakestore.ui.base.BaseAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,11 +7,14 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface StoreService {
 
     @GET("products")
-    fun getAllProducts():Single<Response<List<AllProductsItem>?>>
+    fun getAllProducts(
+        @Query("limit") limit: Int? = null
+    ):Single<Response<List<AllProductsItem>?>>
 
     @GET("products/{productId}")
     fun getSingleProduct(
@@ -21,8 +24,8 @@ interface StoreService {
     @GET("products/categories")
     fun getAllCategories():Single<Response<AllCategories?>>
 
-    @GET("products/categories{categoryName}")
+    @GET("products/category/{category}")
     fun getItemsInCategory(
-        @Path("categoryName") categoryName:String
-    ):Single<Response<AllProductsItem?>>
+        @Path("category") categoryName:String
+    ):Single<Response<List<AllProductsItem>>>
 }

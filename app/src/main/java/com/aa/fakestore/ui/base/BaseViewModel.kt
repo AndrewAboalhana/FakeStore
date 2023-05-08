@@ -1,6 +1,7 @@
 package com.aa.fakestore.ui.base
 
 import androidx.lifecycle.ViewModel
+import com.aa.fakestore.data.model.AllProductsItem
 import com.aa.fakestore.utils.State
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -8,6 +9,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlin.reflect.KFunction1
 
 
 abstract class BaseViewModel : ViewModel() {
