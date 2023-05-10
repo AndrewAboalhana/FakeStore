@@ -1,6 +1,5 @@
 package com.aa.fakestore.data.repository
 
-import com.aa.fakestore.data.model.AllCategories
 import com.aa.fakestore.data.model.AllProductsItem
 import com.aa.fakestore.data.remote.StoreService
 import com.aa.fakestore.utils.State
@@ -10,8 +9,8 @@ import retrofit2.Response
 
 
 class StoreRepositoryImpl(
-private val storeServiceImpl: StoreService
-): StoreRepository{
+    private val storeServiceImpl: StoreService,
+) : StoreRepository {
 
     private fun <T> wrapWithState(function: () -> Single<Response<T>>): Observable<State<T>> {
         return function()
@@ -26,19 +25,15 @@ private val storeServiceImpl: StoreService
             .startWith(Observable.just(State.Loading))
     }
 
-    override fun getAllProducts(limit : Int? ): Observable<State<List<AllProductsItem>?>> {
-       return wrapWithState { storeServiceImpl.getAllProducts() }
+    override fun getAllProducts(limit: Int?): Observable<State<List<AllProductsItem>>> {
+        return wrapWithState { storeServiceImpl.getAllProducts(limit) }
     }
 
-    override fun getSingleProduct(productId: Int): Observable<State<AllProductsItem?>> {
-       return wrapWithState { storeServiceImpl.getSingleProduct(productId) }
-    }
-
-    override fun getAllCategories(): Observable<State<AllCategories?>> {
-        return wrapWithState{ storeServiceImpl.getAllCategories() }
+    override fun getSingleProduct(productId: Int): Observable<State<AllProductsItem>> {
+        return wrapWithState { storeServiceImpl.getSingleProduct(productId) }
     }
 
     override fun getItemsInCategory(categoryName: String): Observable<State<List<AllProductsItem>>> {
-        return  wrapWithState { storeServiceImpl.getItemsInCategory(categoryName)}
+        return wrapWithState { storeServiceImpl.getItemsInCategory(categoryName) }
     }
 }

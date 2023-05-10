@@ -35,7 +35,7 @@ fun <T> showWhenSuccess(view: View, state: State<T>?){
 }
 
 @BindingAdapter(value = ["app:imageUrl"])
-fun loadImage(view: ImageView, url: String) {
+fun loadImage(view: ImageView, url: String?) {
     Glide.with(view).load(url).into(view)
 }
 

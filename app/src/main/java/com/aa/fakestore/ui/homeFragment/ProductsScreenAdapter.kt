@@ -16,7 +16,7 @@ class ProductsScreenAdapter(
         super.onBindViewHolder(holder, position)
         when(holder){
             is ItemViewHolder -> {
-                (holder.binding as ItemCategoryListBinding).recyclerComics.adapter = ProductAdapter(
+                (holder.binding as ItemCategoryListBinding).recyclerProducts.adapter = ProductAdapter(
                     emptyList(),
                     listener
                 )
@@ -26,7 +26,7 @@ class ProductsScreenAdapter(
 }
 
 interface ProductListenerInteraction : BaseInteractionListener {
-    fun onClick(item: AllProductsItem)
+    fun onClick(productId: Int)
 
     fun onTryAgainClicked()
 }

@@ -2,10 +2,34 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/testFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.aa.fakestore.ui.homeFragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="Home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.aa.fakestore.ui.detailsFragment.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="ProductId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.aa.fakestore.ui.testFragment.TestFragment"
+        android:label="TestFragment" >
+        <action
+            android:id="@+id/action_testFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/testFragment" />
+    </fragment>
 </navigation>

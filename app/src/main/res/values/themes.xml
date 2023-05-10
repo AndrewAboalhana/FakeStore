@@ -3,4 +3,14 @@
     </style>
 
     <style name="Theme.FakeStore" parent="Base.Theme.FakeStore" />
+
+    <style name="CardImageStyle" parent="">
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:background">@color/white</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Large</item>
+    </style>
 </resources>

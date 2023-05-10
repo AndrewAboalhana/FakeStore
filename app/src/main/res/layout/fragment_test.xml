@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.aa.fakestore.ui.testFragment.TestViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.testFragment.TestFragment">
+
+
+
+        <TextView
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            android:id="@+id/text_view_today_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_large"
+            android:text="Today's products"
+            android:textSize="@dimen/font_size_title_x_large"
+            app:showWhenSuccess="@{viewModel.limitProducts}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_today_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/text_view_today_products"
+            app:setItems="@{viewModel.limitProducts.toData()}"
+            app:showWhenSuccess="@{viewModel.limitProducts}"
+            tools:listitem="@layout/item_home_card"/>
+
+        <include
+            android:id="@+id/chips_filter"
+            layout="@layout/item_chips" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/chips_filter"
+            android:layout_gravity="center"
+            app:showWhenLoading="@{viewModel.categoryProduct}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_category_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:setItems="@{viewModel.categoryProduct.toData()}"
+            app:showWhenSuccess="@{viewModel.categoryProduct}"
+            tools:listitem="@layout/item_product_item" />
+
+
+
+
+
+    </LinearLayout>
+</layout>

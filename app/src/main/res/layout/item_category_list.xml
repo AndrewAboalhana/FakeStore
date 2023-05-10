@@ -26,7 +26,7 @@
             tools:text="Section Header"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_comics"
+            android:id="@+id/recycler_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"

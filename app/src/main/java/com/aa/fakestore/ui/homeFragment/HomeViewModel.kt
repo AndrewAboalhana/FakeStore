@@ -10,11 +10,15 @@ import com.aa.fakestore.data.remote.RetrofitClient
 import com.aa.fakestore.data.repository.StoreRepository
 import com.aa.fakestore.data.repository.StoreRepositoryImpl
 import com.aa.fakestore.ui.base.BaseViewModel
+import com.aa.fakestore.utils.SingleEvent
 import com.aa.fakestore.utils.State
 
 class HomeViewModel : BaseViewModel(), ProductListenerInteraction {
 
     private val repository: StoreRepository = StoreRepositoryImpl(RetrofitClient.apiService)
+
+    private val _navigationToDetails: MutableLiveData<SingleEvent<Int>> = MutableLiveData()
+    val navigationToDetails: LiveData<SingleEvent<Int>> = _navigationToDetails
 
     @StringRes
     private val electronicsStringRec = R.string.Electronics
@@ -36,16 +40,16 @@ class HomeViewModel : BaseViewModel(), ProductListenerInteraction {
     val electronicsLiveData: LiveData<State<List<AllProductsItem>>> = _electronics
 
     private val _jewelery = MutableLiveData<State<List<AllProductsItem>>>(State.Loading)
-
+    val jeweleryLiveData: LiveData<State<List<AllProductsItem>>> = _jewelery
     private val _menClothes = MutableLiveData<State<List<AllProductsItem>>>(State.Loading)
 
     private val _womenClothes = MutableLiveData<State<List<AllProductsItem>>>(State.Loading)
 
     init {
         getElectronics()
-//        getJewelry()
-//        getMenClothes()
-//        getWomenClothes()
+        getJewelry()
+        getMenClothes()
+        getWomenClothes()
     }
 
     private fun getElectronics() {
@@ -123,7 +127,8 @@ class HomeViewModel : BaseViewModel(), ProductListenerInteraction {
             _productsCollections.value!!.plus(ProductsCollection(titleId, products))
     }
 
-    override fun onClick(item: AllProductsItem) {
+    override fun onClick(productId: Int) {
+        _navigationToDetails.postValue(SingleEvent(productId))
     }
 
     override fun onTryAgainClicked() {
