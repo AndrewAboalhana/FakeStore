@@ -16,7 +16,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(){
     override fun onResume() {
         super.onResume()
         setSupportActionBar(binding.toolbar)
-        hideActionBar()
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         NavigationUI.setupActionBarWithNavController(this,navController)
     }
@@ -28,17 +27,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(){
                 || super.onSupportNavigateUp()
     }
 
-    private fun hideActionBar() {
-        findNavController(R.id.nav_host_fragment_content_main)
-            .addOnDestinationChangedListener { _, destination, arguments ->
-            when (destination.id) {
-                R.id.testFragment -> {
-                    this.supportActionBar?.hide()
-                }
-                else -> {
-                    supportActionBar?.show()
-                }
-            }
-        }
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.aa.fakestore.data.repository
 
+import com.aa.fakestore.data.model.AllCategories
 import com.aa.fakestore.data.model.AllProductsItem
 import com.aa.fakestore.data.remote.StoreService
 import com.aa.fakestore.utils.State
@@ -35,5 +36,9 @@ class StoreRepositoryImpl(
 
     override fun getItemsInCategory(categoryName: String): Observable<State<List<AllProductsItem>>> {
         return wrapWithState { storeServiceImpl.getItemsInCategory(categoryName) }
+    }
+
+    override fun getAllCategories(): Observable<State<AllCategories>> {
+        return wrapWithState { storeServiceImpl.getAllCategories() }
     }
 }

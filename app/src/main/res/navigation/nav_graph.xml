@@ -2,34 +2,44 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              android:id="@+id/nav_graph"
-    app:startDestination="@id/testFragment">
+    app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.aa.fakestore.ui.homeFragment.HomeFragment"
-        android:label="Home" >
-        <action
-            android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:popUpTo="@id/homeFragment" />
-    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.aa.fakestore.ui.detailsFragment.DetailsFragment"
-        android:label="DetailsFragment" >
+        android:label="Details" >
         <argument
             android:name="ProductId"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.aa.fakestore.ui.testFragment.TestFragment"
-        android:label="TestFragment" >
+        android:id="@+id/categoriesFragment"
+        android:name="com.aa.fakestore.ui.categoriesFragment.CategoriesFragment"
+        android:label="Categories" >
         <action
-            android:id="@+id/action_testFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@id/testFragment" />
+            android:id="@+id/action_categoriesFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.aa.fakestore.ui.categoryFragment.CategoryFragment"
+        android:label="Category" >
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.aa.fakestore.ui.homeScreen.HomeFragment"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_homeFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>

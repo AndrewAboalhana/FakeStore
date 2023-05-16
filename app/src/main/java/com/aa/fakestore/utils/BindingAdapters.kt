@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.aa.fakestore.R
 import com.aa.fakestore.ui.base.BaseAdapter
 import com.bumptech.glide.Glide
 
@@ -45,5 +46,18 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
         (view.adapter as BaseAdapter<T>).setItems(items)
     } else {
         (view.adapter as BaseAdapter<T>).setItems(emptyList())
+    }
+}
+
+@BindingAdapter("categoryImage")
+fun setCategoryImage(imageView: ImageView, category: String?) {
+    category?.let {
+        val drawableId = when (it) {
+            "electronics" -> R.drawable.electronics
+            "jewelery" -> R.drawable.jewelery
+            "men's clothing" -> R.drawable.men_clothes
+            else -> R.drawable.women_clothes
+        }
+        imageView.setImageResource(drawableId)
     }
 }

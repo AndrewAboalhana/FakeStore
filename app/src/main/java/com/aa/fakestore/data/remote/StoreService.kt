@@ -1,5 +1,6 @@
 package com.aa.fakestore.data.remote
 
+import com.aa.fakestore.data.model.AllCategories
 import com.aa.fakestore.data.model.AllProductsItem
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
@@ -23,4 +24,7 @@ interface StoreService {
     fun getItemsInCategory(
         @Path("category") categoryName: String,
     ): Single<Response<List<AllProductsItem>>>
+
+    @GET("products/categories")
+    fun getAllCategories():Single<Response<AllCategories>>
 }

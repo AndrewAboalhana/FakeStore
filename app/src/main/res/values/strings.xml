@@ -48,4 +48,6 @@
     <string name="price">price:</string>
     <string name="buy">Buy</string>
     <string name="all_products">all products</string>
+    <string name="today_s_products">Today\'s products</string>
+    <string name="view_all">view all</string>
 </resources>
